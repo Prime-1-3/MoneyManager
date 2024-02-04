@@ -16,11 +16,21 @@ def relative_to_assets(path: str) -> Path:
 def popmsg():
    messagebox.showinfo("LOGIN","Use Log in")
 
+def input_err(field):
+    field=field+" has no value"
+    messagebox.showerror("No Input",field)
+
 def new_user():
     with open(filename,'r+',newline="") as file:
         name=entry_1.get()
+        if name=="":
+            input_err("Name")
         email=entry_2.get()
+        if email=="":
+            input_err("Email")
         Password=entry_3.get()
+        if Password=="":
+            input_err("Password")
         field=[name,email,Password]
 
         readar=csv.reader(file)
