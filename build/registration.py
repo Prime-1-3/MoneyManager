@@ -2,11 +2,19 @@ from pathlib import Path
 from tkinter import *
 import csv
 from tkinter import messagebox
+import os
 
-filename="user_rec.csv"
+filename="E:/SDP/MoneyManager/user_rec.csv"
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\frame0")
+
+
+def execute_python_file(file_path):
+   try:
+      os.system(f'python {file_path}')
+   except FileNotFoundError:
+      print(f"Error: The file '{file_path}' does not exist.")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -43,13 +51,23 @@ def new_user():
                 break
         if flag==0:
             csv.writer(file).writerow(field)
+            messagebox.showinfo("Success","New User Registration is Successful.\n"+
+                                "Now Log Into The System")
+            switch_login()
         file.close()
+
+
+def switch_login():
+    window.destroy()
+    execute_python_file("E:/SDP/MoneyManager/build/login.py")
         
 
 
 window = Tk()
 
+window.title("Money Manager")
 window.geometry("1116x590")
+window.geometry("+150+40")
 window.configure(bg = "#FFFFFF")
 
 
@@ -249,7 +267,7 @@ button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=switch_login,
     relief="flat"
 )
 button_2.place(
