@@ -9,9 +9,9 @@ Money manager software architecture typically involves several layers and compon
 1. **Presentation Layer**:
    1. User Interface (UI): This layer includes the interfaces through which users interact with the system. It may consist of web interfaces, desktop applications, mobile apps, or a combination of these.
 
-1. User Authentication: Handles user authentication and authorization, ensuring that only authorized users can access the system and its functionalities.
+   1. User Authentication: Handles user authentication and authorization, ensuring that only authorized users can access the system and its functionalities.
 
-1. Dashboard: Provides users with an overview of their financial data, including balances, transactions, budgeting information, and other relevant metrics.
+   1. Dashboard: Provides users with an overview of their financial data, including balances, transactions, budgeting information, and other relevant metrics.
 
 
 1. **Application Layer:**
