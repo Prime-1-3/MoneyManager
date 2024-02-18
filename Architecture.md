@@ -28,11 +28,6 @@ Money manager software architecture typically involves several layers and compon
    1. Data Encryption: Encrypts sensitive data such as user credentials, financial transactions, and personal information to protect it from unauthorized access.
 
 
-1. **DevOps and Deployment:**
-   1. Continuous Integration/Continuous Deployment: Automates the build, testing, and deployment process to enable rapid and reliable delivery of updates and new features.
-   1. Configuration Management: Manages configuration settings for different environments to ensure consistency and reproducibility.
-
-
 
 
 Layered architecture is well-suited for complex systems like money management software because it facilitates separation of concerns, allows for easier maintenance and testing, and supports incremental development and scalability. Additionally, it provides flexibility to swap out or upgrade individual layers without affecting the entire system.
@@ -68,8 +63,7 @@ Layered architecture is well-suited for complex systems like money management so
 | :-: |
 
 
-|DevOps and Deployment Layer|
-| :-: |
+
 
 
 
@@ -77,3 +71,5 @@ Layered architecture is well-suited for complex systems like money management so
 
 
 Figure: Diagram of Layered Architecture Pattern
+
+<img title="a title" alt="Alt text" src="build/assets/Acrhitecture Diagram.jpeg">
