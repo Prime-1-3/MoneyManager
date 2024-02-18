@@ -7,7 +7,7 @@ import os
 filename="E:/SDP/MoneyManager/user_rec.csv"
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\reg")
 
 
 def execute_python_file(file_path):
