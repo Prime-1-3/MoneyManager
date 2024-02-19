@@ -72,4 +72,4 @@ Layered architecture is well-suited for complex systems like money management so
 
 Figure: Diagram of Layered Architecture Pattern
 
-<img title="Diagram of Layered Architecture Pattern for Money Manager" alt="Architectural Pattern for Money Manager" src="build/assets/Acrhitecture Diagram.jpeg">
+<img title="Diagram of Layered Architecture Pattern for Money Manager" alt="Architectural Pattern for Money Manager" src="build/assets/Architecture Diagram.jpeg">
