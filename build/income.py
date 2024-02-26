@@ -1,6 +1,9 @@
 from pathlib import Path
 from tkinter import *
+from datetime import date
+import csv
 
+filename="E:/SDP/MoneyManager/data.csv"
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\income")
@@ -10,7 +13,41 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 
+def submit_button_press():
+    with open(filename,'a',newline="") as file:
+    
+        income_source = entry_1.get().strip()
+        income_amount = entry_2.get().strip()
+
+    
+        if income_source and income_amount.isnumeric():
+            field=[0,date.today().strftime("%b %d %y"),income_source, income_amount]
+            csv.writer(file).writerow(field)
+            file.close()
+
+            warning_label.place(x=515.0, y=350.0)
+            warning_label.config(text="Successfully Submitted!!",fg="white")
+            window.after(700,lambda:warning_label.place_forget())
+
+        elif income_amount and not income_source:
+            warning_label.place(x=515.0, y=350.0)
+            warning_label.config(text="Please Enter Income Source",fg="red")
+
+        elif not income_amount and income_source:
+            warning_label.place(x=515.0, y=350.0)
+            warning_label.config(text="Please Enter Income Amount",fg="red")
+
+        elif not income_source and not income_amount:
+            warning_label.place(x=515.0, y=350.0)
+            warning_label.config(text="Please provide both Income Source and Income Amount.", fg="red", font=("Poppins", 10))
+
+        elif not income_amount.isnumeric():
+            warning_label.place(x=515.0, y=350.0)
+            warning_label.config(text="Income Amount Can Be Only Numbers",fg="red")
+
+
 window = Tk()
+window.iconbitmap(relative_to_assets("window_logo.ico"))
 window.title("Money Manager")
 window.geometry("1116x582")
 window.geometry("+150+40")
@@ -138,7 +175,7 @@ button_6 = Button(
     image=button_image_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=submit_button_press,
     relief="flat"
 )
 button_6.place(
@@ -221,5 +258,15 @@ canvas.create_text(
     fill="#FEFAD9",
     font=("Poppins SemiBold", 18 * -1)
 )
+
+warning_label = Label(
+    window,
+    text="",
+    bg="#28283F",
+    fg="red",
+    font=("Poppins", 12)
+)
+
+
 window.resizable(False, False)
 window.mainloop()

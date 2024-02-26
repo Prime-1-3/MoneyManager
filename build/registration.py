@@ -22,7 +22,7 @@ def relative_to_assets(path: str) -> Path:
 
 
 def popmsg():
-   messagebox.showinfo("LOGIN","Use Log in")
+   messagebox.showinfo("Already Registered","User Already Exist\nPlease Log in")
 
 def input_err(field):
     field=field+" has no value"
@@ -53,8 +53,8 @@ def new_user():
             csv.writer(file).writerow(field)
             messagebox.showinfo("Success","New User Registration is Successful.\n"+
                                 "Now Log Into The System")
+            file.close()
             switch_login()
-        file.close()
 
 
 def switch_login():
@@ -65,6 +65,7 @@ def switch_login():
 
 window = Tk()
 
+window.iconbitmap(relative_to_assets("window_logo.ico"))
 window.title("Money Manager")
 window.geometry("1116x590")
 window.geometry("+150+40")

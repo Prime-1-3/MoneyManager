@@ -34,6 +34,7 @@ def pop_reg_msg():
 def input_err(field):
     field=field+" has no value"
     messagebox.showerror("No Input",field)
+    
 
 filename="E:/SDP/MoneyManager/user_rec.csv"
 
@@ -48,6 +49,7 @@ def check_user():
         
 
         readar=csv.reader(file)
+        next(readar)                                                #Skip the field names
         flag=0
         for line in readar:
             if email==line[1] and Password==line[2]:
@@ -63,6 +65,7 @@ def check_user():
 
 window = Tk()
 
+window.iconbitmap(relative_to_assets("window_logo.ico"))
 window.title("Money Manager")
 window.geometry("1116x582")
 window.geometry("+150+40")
