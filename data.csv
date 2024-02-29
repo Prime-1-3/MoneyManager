@@ -1,4 +1,4 @@
-flag,date,source,amaount
-0,Feb 27 24,tution,3000
-0,Feb 27 24,loan,100
-1,Feb 27 24,food,100
+flag,Date,Source,Amaount
+1,Feb 27 24,tution,3000
+1,Feb 27 24,loan,100
+0,Feb 27 24,food,1000

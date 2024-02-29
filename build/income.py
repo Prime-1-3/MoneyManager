@@ -21,7 +21,7 @@ def submit_button_press():
 
     
         if income_source and income_amount.isnumeric():
-            field=[0,date.today().strftime("%b %d %y"),income_source, income_amount]
+            field=[1,date.today().strftime("%b %d %y"),income_source, income_amount]
             csv.writer(file).writerow(field)
             file.close()
 
