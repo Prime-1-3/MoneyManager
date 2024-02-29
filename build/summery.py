@@ -1,5 +1,6 @@
 from pathlib import Path
 from tkinter import *
+import os
 import tkinter
 import csv
 
@@ -12,6 +13,27 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 filename="E:/SDP/MoneyManager/data.csv"
+
+def execute_python_file(file_path):
+   try:
+      os.system(f'python {file_path}')
+   except FileNotFoundError:
+      print(f"Error: The file '{file_path}' does not exist.")
+
+
+def switch_login():
+    window.destroy()
+    execute_python_file("E:/SDP/MoneyManager/build/login.py")
+
+def switch_expense():
+    window.destroy()
+    execute_python_file("E:/SDP/MoneyManager/build/expense.py")
+
+def switch_income():
+    window.destroy()
+    execute_python_file("E:/SDP/MoneyManager/build/income.py")
+
+
 
 
 window = Tk()
@@ -86,7 +108,7 @@ button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=switch_income,
     relief="flat"
 )
 button_2.place(
@@ -102,7 +124,7 @@ button_3 = Button(
     image=button_image_3,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
+    command=switch_expense,
     relief="flat"
 )
 button_3.place(
@@ -134,7 +156,7 @@ button_5 = Button(
     image=button_image_5,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_5 clicked"),
+    command=switch_login,
     relief="flat"
 )
 button_5.place(
