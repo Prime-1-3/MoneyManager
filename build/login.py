@@ -25,6 +25,8 @@ def switch_reg():
 
 def popmsg(name):
     messagebox.showinfo("Greetings",name+" Welcome Back")
+    window.destroy()
+    execute_python_file("E:/SDP/MoneyManager/build/income.py")
 
 def pop_reg_msg():
     messagebox.showinfo("Incorrect Mail or Password","Wrong Email or Password \n"+

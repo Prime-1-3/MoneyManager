@@ -1,7 +1,7 @@
 from pathlib import Path
 from tkinter import *
 import os
-from datetime import date
+from tkcalendar import DateEntry
 import csv
 
 filename="E:/SDP/MoneyManager/data.csv"
@@ -44,28 +44,30 @@ def submit_button_press():
 
     
         if expense_source and expense_amount.isnumeric():
-            field=[0,date.today().strftime("%b %d %y"),expense_source, expense_amount]
+            field=[0,cal.get_date().strftime("%b %d %Y"),expense_source, expense_amount]
             csv.writer(file).writerow(field)
+            entry_1.delete(0,'end')
+            entry_2.delete(0,'end')
             file.close()
 
-            warning_label.place(x=515.0, y=350.0)
+            warning_label.place(x=515.0, y=430.0)
             warning_label.config(text="Successfully Submitted!!",fg="white")
-            window.after(700,lambda:warning_label.place_forget())
+            window.after(900,lambda:warning_label.place_forget())
 
         elif expense_amount and not expense_source:
-            warning_label.place(x=515.0, y=350.0)
+            warning_label.place(x=515.0, y=430.0)
             warning_label.config(text="Please Enter Expense Source",fg="red")
 
         elif not expense_amount and expense_source:
-            warning_label.place(x=515.0, y=350.0)
+            warning_label.place(x=515.0, y=430.0)
             warning_label.config(text="Please Enter Expense Amount",fg="red")
 
         elif not expense_source and not expense_amount:
-            warning_label.place(x=515.0, y=350.0)
+            warning_label.place(x=515.0, y=430.0)
             warning_label.config(text="Please provide both Expense Source and Expense Amount.", fg="red", font=("Poppins", 10))
 
         elif not expense_amount.isnumeric():
-            warning_label.place(x=515.0, y=350.0)
+            warning_label.place(x=515.0, y=430.0)
             warning_label.config(text="Expense Amount Can Be Only Numbers",fg="red")
 
 
@@ -204,7 +206,7 @@ button_6 = Button(
 )
 button_6.place(
     x=612.0,
-    y=391.0,
+    y=466.0,
     width=136.0,
     height=65.46057891845703
 )
@@ -282,6 +284,21 @@ canvas.create_text(
     fill="#FEFAD9",
     font=("Poppins SemiBold", 18 * -1)
 )
+
+canvas.create_text(
+    503.0,
+    350.0,
+    anchor="nw",
+    text="Select Date",
+    fill="#FEFAD9",
+    font=("Poppins SemiBold", 18 * -1)
+)
+
+cal=DateEntry(window,selectmode="day",date_pattern='dd-MM-yyyy',background="dark green",
+              fieldbackground='lightblue',
+              foreground='yellow',
+              arrowcolor='red')
+cal.grid(pady=385,padx=504)
 
 warning_label = Label(
     window,

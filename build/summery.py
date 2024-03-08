@@ -1,3 +1,4 @@
+from datetime import datetime
 from pathlib import Path
 from tkinter import *
 import os
@@ -64,26 +65,50 @@ image_1 = canvas.create_image(
     image=image_image_1
 )
 
+def extract_date(row):
+    date_string = row[1] 
+    try:
+        return datetime.strptime(date_string, "%b %d %y")
+    except ValueError:
+        return datetime.strptime(date_string,'%b %d %Y')
+
 with open(filename,"r",newline="") as file:
     reader = csv.reader(file)
     data=list(reader)
+    header=data[0]
+    d_sorted=sorted(data[1:],key=extract_date)
+    d_sorted.insert(0,header)
+    d_count=len(data)
+    
 
     window.grid_columnconfigure(0,weight=1)    
     
-    entrieslist = []
-    for i, row in enumerate(data, start=1):
-        entrieslist.append(row[0])
-        for col in range(1, 4):
-            if row[0]=='1':
-                lebel= tkinter.Label(window, text=row[col],font='oregano',height=2,width=12,relief=tkinter.RIDGE,bg='#0FFF52')
-                lebel.grid(row=i, column=col,ipadx='72')
-            elif row[0]=='flag':
-                lebel= tkinter.Label(window, text=row[col],font='oregano',height=2,width=12,relief=tkinter.RIDGE,bg='#E2B2FF')
-                lebel.grid(row=i, column=col,ipadx='72')
-            else:
-                lebel= tkinter.Label(window, text=row[col],font='oregano',height=2,width=12,relief=tkinter.RIDGE,bg='#FF4545')
-                lebel.grid(row=i, column=col,ipadx='72')
-            
+    if d_count<=10:
+        for i, row in enumerate(d_sorted, start=1):
+            for col in range(1, 4):
+                if row[0]=='1':
+                    lebel= tkinter.Label(window, text=row[col],font='oregano',height=2,width=12,relief=tkinter.RIDGE,bg='#0FFF52')
+                    lebel.grid(row=i, column=col,ipadx='72')
+                elif row[0]=='flag':
+                    lebel= tkinter.Label(window, text=row[col],font='oregano',height=2,width=12,relief=tkinter.RIDGE,bg='#E2B2FF')
+                    lebel.grid(row=i, column=col,ipadx='72')
+                else:
+                    lebel= tkinter.Label(window, text=row[col],font='oregano',height=2,width=12,relief=tkinter.RIDGE,bg='#FF4545')
+                    lebel.grid(row=i, column=col,ipadx='72')
+                
+    else:
+        for i, row in enumerate(d_sorted, start=1):
+            for col in range(1, 4):
+                if row[0]=='1':
+                    lebel= tkinter.Label(window, text=row[col],font='oregano',height=1,width=12,relief=tkinter.RIDGE,bg='#0FFF52')
+                    lebel.grid(row=i, column=col,ipadx='72')
+                elif row[0]=='flag':
+                    lebel= tkinter.Label(window, text=row[col],font='oregano',height=1,width=12,relief=tkinter.RIDGE,bg='#E2B2FF')
+                    lebel.grid(row=i, column=col,ipadx='72')
+                else:
+                    lebel= tkinter.Label(window, text=row[col],font='oregano',height=1,width=12,relief=tkinter.RIDGE,bg='#FF4545')
+                    lebel.grid(row=i, column=col,ipadx='72')
+
 
 
 button_image_1 = PhotoImage(
