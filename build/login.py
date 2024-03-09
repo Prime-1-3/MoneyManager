@@ -5,7 +5,8 @@ from tkinter import Tk, Canvas, Entry, Button, PhotoImage, messagebox
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\frame1")
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets\login")
+filename=OUTPUT_PATH/Path("user_rec.csv")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,10 +22,12 @@ def execute_python_file(file_path):
 
 def switch_reg():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/registration.py")
+    execute_python_file(OUTPUT_PATH/Path("registration.py"))
 
 def popmsg(name):
     messagebox.showinfo("Greetings",name+" Welcome Back")
+    window.destroy()
+    execute_python_file(OUTPUT_PATH/Path("dashboard.py"))
 
 def pop_reg_msg():
     messagebox.showinfo("Incorrect Mail or Password","Wrong Email or Password \n"+
@@ -34,8 +37,9 @@ def pop_reg_msg():
 def input_err(field):
     field=field+" has no value"
     messagebox.showerror("No Input",field)
+    
 
-filename="E:/SDP/MoneyManager/user_rec.csv"
+
 
 def check_user():
     with open(filename,'r') as file:
@@ -48,6 +52,7 @@ def check_user():
         
 
         readar=csv.reader(file)
+        next(readar)                                                #Skip the field names
         flag=0
         for line in readar:
             if email==line[1] and Password==line[2]:
@@ -63,6 +68,7 @@ def check_user():
 
 window = Tk()
 
+window.iconbitmap(relative_to_assets("window_logo.ico"))
 window.title("Money Manager")
 window.geometry("1116x582")
 window.geometry("+150+40")

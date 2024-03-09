@@ -4,11 +4,9 @@ import csv
 from tkinter import messagebox
 import os
 
-filename="E:/SDP/MoneyManager/user_rec.csv"
-
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\frame0")
-
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets\reg")
+filename=OUTPUT_PATH/Path("user_rec.csv")
 
 def execute_python_file(file_path):
    try:
@@ -22,7 +20,7 @@ def relative_to_assets(path: str) -> Path:
 
 
 def popmsg():
-   messagebox.showinfo("LOGIN","Use Log in")
+   messagebox.showinfo("Already Registered","User Already Exist\nPlease Log in")
 
 def input_err(field):
     field=field+" has no value"
@@ -53,18 +51,19 @@ def new_user():
             csv.writer(file).writerow(field)
             messagebox.showinfo("Success","New User Registration is Successful.\n"+
                                 "Now Log Into The System")
+            file.close()
             switch_login()
-        file.close()
 
 
 def switch_login():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/login.py")
+    execute_python_file(OUTPUT_PATH/Path("login.py"))
         
 
 
 window = Tk()
 
+window.iconbitmap(relative_to_assets("window_logo.ico"))
 window.title("Money Manager")
 window.geometry("1116x590")
 window.geometry("+150+40")
