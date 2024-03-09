@@ -4,12 +4,9 @@ import os
 from tkcalendar import DateEntry
 import csv
 
-filename="E:/SDP/MoneyManager/data.csv"
-
-
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\expense")
-
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets\expense")
+filename=OUTPUT_PATH/Path("data.csv")
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
@@ -24,16 +21,15 @@ def execute_python_file(file_path):
 
 def switch_login():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/login.py")
+    execute_python_file(OUTPUT_PATH/Path("login.py"))
 
 def switch_income():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/income.py")
+    execute_python_file(OUTPUT_PATH/Path("income.py"))
 
 def switch_summery():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/summery.py")
-
+    execute_python_file(OUTPUT_PATH/Path("summery.py"))
 
 
 def submit_button_press():

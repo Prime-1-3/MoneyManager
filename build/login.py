@@ -5,7 +5,8 @@ from tkinter import Tk, Canvas, Entry, Button, PhotoImage, messagebox
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\login")
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets\login")
+filename=OUTPUT_PATH/Path("user_rec.csv")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,12 +22,12 @@ def execute_python_file(file_path):
 
 def switch_reg():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/registration.py")
+    execute_python_file(OUTPUT_PATH/Path("registration.py"))
 
 def popmsg(name):
     messagebox.showinfo("Greetings",name+" Welcome Back")
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/income.py")
+    execute_python_file(OUTPUT_PATH/Path("dashboard.py"))
 
 def pop_reg_msg():
     messagebox.showinfo("Incorrect Mail or Password","Wrong Email or Password \n"+
@@ -38,7 +39,7 @@ def input_err(field):
     messagebox.showerror("No Input",field)
     
 
-filename="E:/SDP/MoneyManager/user_rec.csv"
+
 
 def check_user():
     with open(filename,'r') as file:

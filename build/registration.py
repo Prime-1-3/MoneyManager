@@ -4,11 +4,9 @@ import csv
 from tkinter import messagebox
 import os
 
-filename="E:/SDP/MoneyManager/user_rec.csv"
-
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\reg")
-
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets\reg")
+filename=OUTPUT_PATH/Path("user_rec.csv")
 
 def execute_python_file(file_path):
    try:
@@ -59,7 +57,7 @@ def new_user():
 
 def switch_login():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/login.py")
+    execute_python_file(OUTPUT_PATH/Path("login.py"))
         
 
 

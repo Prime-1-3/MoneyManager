@@ -7,13 +7,13 @@ import csv
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\summery")
-
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets\summery")
+filename=OUTPUT_PATH/Path("data.csv")
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
-filename="E:/SDP/MoneyManager/data.csv"
+
 
 def execute_python_file(file_path):
    try:
@@ -24,15 +24,16 @@ def execute_python_file(file_path):
 
 def switch_login():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/login.py")
+    execute_python_file(OUTPUT_PATH/Path("login.py"))
 
 def switch_expense():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/expense.py")
+    execute_python_file(OUTPUT_PATH/Path("expense.py"))
+
 
 def switch_income():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/income.py")
+    execute_python_file(OUTPUT_PATH/Path("income.py"))
 
 
 

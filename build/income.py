@@ -4,10 +4,10 @@ import os
 from datetime import date
 import csv
 
-filename="E:/SDP/MoneyManager/data.csv"
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"E:\SDP\MoneyManager\build\assets\income")
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets\income")
+filename=OUTPUT_PATH/Path("data.csv")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -23,15 +23,15 @@ def execute_python_file(file_path):
 
 def switch_login():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/login.py")
+    execute_python_file(OUTPUT_PATH/Path("login.py"))
 
 def switch_expense():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/expense.py")
+    execute_python_file(OUTPUT_PATH/Path("expense.py"))
 
 def switch_summery():
     window.destroy()
-    execute_python_file("E:/SDP/MoneyManager/build/summery.py")
+    execute_python_file(OUTPUT_PATH/Path("summery.py"))
 
 
 
