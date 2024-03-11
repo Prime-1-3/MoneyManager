@@ -183,13 +183,14 @@ draw_pie_chart(canvas, expenses_data, "Expenses Details", 520, 175, 125, expense
 frame2 = Frame(window, bg='#F6636B')
 frame2.place(x=300, y=430, width=210, height=148)
 
-# Label for "Total Users"
-total_users_label = Label(frame2, text='Total Users', font=("", 15, "bold"), fg='#5154A1', bg='#F6636B')
-total_users_label.place(x=40, y=20)
+# Calculate total balance (Total Income - Total Expenses)
+total_income = sum(income_data.values())
+total_expenses = sum(expenses_data.values())
+total_balance = total_income - total_expenses
 
-# Label for total count
-total_count_label = Label(frame2, text='100', font=("", 25, "bold"), fg='#2ACF94', bg='#F6636B')
-total_count_label.place(x=80, y=60)
+# Label for total balance
+total_balance_label = Label(frame2, text=f'Total Balance\n\n{total_balance}', font=("", 15, "bold"), fg='#5154A1', bg='#F6636B')
+total_balance_label.place(x=40, y=20)
 
 # Frame 3
 frame3 = Frame(window, bg='#EA2EFB')
