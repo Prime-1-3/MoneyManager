@@ -22,6 +22,10 @@ def execute_python_file(file_path):
       print(f"Error: The file '{file_path}' does not exist.")
 
 
+def switch_dash():
+    window.destroy()
+    execute_python_file(OUTPUT_PATH/Path("dashboard.py"))
+
 def switch_login():
     window.destroy()
     execute_python_file(OUTPUT_PATH/Path("login.py"))
@@ -118,7 +122,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
+    command=switch_dash,
     relief="flat"
 )
 button_1.place(
