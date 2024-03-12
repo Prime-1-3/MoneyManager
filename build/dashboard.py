@@ -103,7 +103,7 @@ def draw_pie_chart(canvas, data, title, x, y, radius, colors):
         start_angle += angle
 
     # Draw legend
-    legend_x, legend_y = x + radius + 20, y - radius
+    legend_x, legend_y = x + radius + 5, y - radius
     for category, value, color in zip(data.keys(), data.values(), colors):
         canvas.create_rectangle(legend_x, legend_y, legend_x + 20, legend_y + 20, fill=color)
         canvas.create_text(legend_x + 25, legend_y + 10, text=f"{category} ({value})", anchor='w')
@@ -143,16 +143,16 @@ image_1 = canvas.create_image(
 
 # Header
 header = Frame(window, bg='#C07BB5')
-header.place(x=300, y=0, width=800, height=50)
+header.place(x=300, y=0, width=840, height=50)
 
-# Greeting text (in red)
-greeting_text = Label(header, text=f"{get_greeting()}", font=("Pacifico", 14, "bold"), fg='#1789CA', bg='#C07BB5')
-greeting_text.place(x=350, y=5)
+# Greeting text 
+greeting_text = Label(header, text=f"{get_greeting()}", font=("Pacifico", 22, "bold"), fg='black', bg='#C07BB5')
+greeting_text.place(x=310, y=5)
 
-# Time text (in blue)
+# Time text 
 time_text = f'It\'s {get_bangladesh_time()}'
 time_label = Label(header, text=time_text, font=("Pacifico", 14, "bold"), fg='#0000FF', bg='#C07BB5')
-time_label.place(x=640, y=5)
+time_label.place(x=680, y=10)
 
 # User name
 cname = Label(header, text='', fg='#BD2EEF', bg='#C07BB5', font=("", 15, "bold"))
@@ -171,7 +171,7 @@ profile_label.place(x=15, y=8)
 
 # Body
 frame1 = Frame(window, bg='#7CCEC9')
-frame1.place(x=300, y=70, width=800, height=350)
+frame1.place(x=300, y=70, width=840, height=350)
 
 # Calculate income and expenses
 income_data, expenses_data = calculate_income_expenses(filename)
@@ -185,11 +185,11 @@ income_colors = ['#FF9999', '#66B2FF', '#99FF99', '#FFCC99', '#FFD700']
 expenses_colors = ['#FF9999', '#66B2FF', '#99FF99', '#FFCC99', '#FFD700']
 
 # Draw pie charts with specified colors
-draw_pie_chart(canvas, income_data, "Income Details", 135, 175, 125, income_colors)
-draw_pie_chart(canvas, expenses_data, "Expenses Details", 520, 175, 125, expenses_colors)
+draw_pie_chart(canvas, income_data, "Income Details", 120, 175, 120, income_colors)
+draw_pie_chart(canvas, expenses_data, "Expenses Details", 502, 175, 120, expenses_colors)
 
 # Frame 2
-frame2 = Frame(window, bg='#F6636B')
+frame2 = Frame(window, bg='#FF004D')
 frame2.place(x=300, y=430, width=210, height=148)
 
 # Calculate total balance (Total Income - Total Expenses)
@@ -198,11 +198,11 @@ total_expenses = sum(expenses_data.values())
 total_balance = total_income - total_expenses
 
 # Label for total balance
-total_balance_label = Label(frame2, text=f'Total Balance\n\n{total_balance}', font=("", 15, "bold"), fg='#5154A1', bg='#F6636B')
+total_balance_label = Label(frame2, text=f'Total Balance\n\n{total_balance}', font=("", 15, "bold"), fg='dark blue', bg='#FF004D')
 total_balance_label.place(x=40, y=20)
 
 # Frame 3
-frame3 = Frame(window, bg='#EA2EFB')
+frame3 = Frame(window, bg='#BFEA7C')
 frame3.place(x=600, y=430, width=210, height=148)
 
 # Calculate the most income-earning source
@@ -212,11 +212,11 @@ most_income_amount = income_data[most_income_source]
 # Display the most income-earning source and its amount
 most_income_label = Label(frame3,
                           text=f"Most Income Source\n\n{most_income_source}\n\nAmount: {most_income_amount}",
-                          font=("bold", 15), fg='blue', bg='#EA2EFB')
+                          font=("light", 15), fg='blue', bg='#BFEA7C')
 most_income_label.place(x=100, y=70, anchor=CENTER)
 
 # Frame 4
-frame4 = Frame(window, bg='#3462D9')
+frame4 = Frame(window, bg='#FF8911')
 frame4.place(x=890, y=430, width=210, height=148)
 
 # Calculate the most expense source
@@ -226,7 +226,7 @@ most_expense_amount = expenses_data[most_expense_source]
 # Display the most expense source and its amount
 most_expense_label = Label(frame4,
                            text=f"Most Expense Source\n\n{most_expense_source}\n\nAmount: {most_expense_amount}",
-                           font=("bold", 15), fg='#FFFFFF', bg='#3462D9')
+                           font=("bold", 15), fg='#FFFFFF', bg='#FF8911')
 most_expense_label.place(x=110, y=70, anchor=CENTER)
 
 button_image_1 = PhotoImage(
