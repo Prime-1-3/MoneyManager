@@ -1,77 +1,31 @@
-<a name="_heading=h.ns8wb152ssmh"></a>   **Project Architecture**
-#
-## <a name="_heading=h.3znysh7"></a>**Project Title:** Money Manager
-## <a name="_heading=h.2et92p0"></a>**Project Architecture:** Layered Architecture
+## **Project Title:** Money Manager
+
+## **Project Architecture:** Repository Architecture
+
+## Reasoning:
+In the context of a money management system, a repository architecture is utilized primarily for organizing and managing data storage and access. Here are several reasons why a repository architecture is used in such systems
+
+1. **Centralized Data Management:** A repository architecture allows for centralizing all financial data related to accounts, transactions, budgets, and other relevant information. This centralized approach simplifies data management, ensuring consistency and reducing the likelihood of data discrepancies.
+2. **Abstraction of Data Access:** By employing a repository pattern, the data access logic is abstracted away from the rest of the application. This separation of concerns makes the codebase more maintainable and flexible, as changes to the underlying data storage technology can be made without impacting the business logic.
+3. **Scalability and Flexibility:** A well-designed repository architecture facilitates scalability by providing a modular structure that can accommodate changes in data volume and system complexity. As the money management system grows, additional repositories can be added or existing ones modified to support new features and requirements.
+4. **Interoperability and Integration:** Repositories provide a standardized interface for accessing and manipulating data, making it easier to integrate the money management system.
+
+Overall, a repository architecture serves as a foundational component of a money management system, facilitating efficient data management, enhancing security, promoting scalability, and enabling seamless integration with other systems.
+
+## **Repository Architecture Components for Money Manager:**
+
+1. Log In
+2. Registration
+3. Add Income
+4. Add expense
+5. Show Transaction History
+6. Show Balance
+7. Show Graphical View of Income Sources
+8. Show Graphical View of Expense Reasons
+9. Show Total Expenses
+10. Show Total income
 
 
-Money manager software architecture typically involves several layers and components to handle various aspects of financial data processing, user interactions, security, and integration with external systems. Here's a high-level overview of a typical architecture:
+<img title="Diagram of Repository Architecture Pattern for Money Manager" alt="Architectural Pattern for Money Manager" src="build/assets/Repository Architecture Diagram.jpeg">
 
-1. **Presentation Layer**:
-   1. User Interface (UI): This layer includes the interfaces through which users interact with the system. It may consist of web interfaces, desktop applications, mobile apps, or a combination of these.
-
-   1. User Authentication: Handles user authentication and authorization, ensuring that only authorized users can access the system and its functionalities.
-
-   1. Dashboard: Provides users with an overview of their financial data, including balances, transactions, budgeting information, and other relevant metrics.
-
-
-1. **Application Layer:**
-   1. Business Logic: This layer contains the core functionalities of the money management system. It includes modules for account management, transaction processing, budgeting, forecasting, reporting, and other financial operations.
-   1. Workflow Orchestration: Coordinates the execution of various tasks and workflows within the system, ensuring proper sequencing and dependency management.
-
-1. **Data Access Layer:**
-   1. Data Management System: Stores and manages financial data, user profiles, transaction history, and other relevant information. 
-
-
-
-1. **Security Layer:**
-   1. Authentication and Authorization: Enforces security measures to verify the identity of users and control their access to system resources.
-   1. Data Encryption: Encrypts sensitive data such as user credentials, financial transactions, and personal information to protect it from unauthorized access.
-
-
-
-
-Layered architecture is well-suited for complex systems like money management software because it facilitates separation of concerns, allows for easier maintenance and testing, and supports incremental development and scalability. Additionally, it provides flexibility to swap out or upgrade individual layers without affecting the entire system.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-|Presentation Layer|
-| :-: |
-
-
-|Application Layer|
-| :-: |
-
-
-|Data Access Layer|
-| :-: |
-
-
-|Security Layer|
-| :-: |
-
-
-
-
-
-
-
-
-
-Figure: Diagram of Layered Architecture Pattern
-
-
-<img title="Diagram of Layered Architecture Pattern for Money Manager" alt="Architectural Pattern for Money Manager" src="build/assets/Acrhitecture Diagram.jpeg">
-
+## Figure: Repository Architecture Pattern for Money Manager
