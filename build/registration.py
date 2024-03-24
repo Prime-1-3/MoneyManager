@@ -26,28 +26,43 @@ def input_err(field):
     field=field+" has no value"
     messagebox.showerror("No Input",field)
 
+
+def get_data():
+    name=entry_1.get()
+    email=entry_2.get()
+    Password=entry_3.get()
+    flag=0
+
+    if name=="":
+        input_err("Name")
+        flag=1
+
+    if email=="":
+        input_err("Email")
+        flag=1
+
+    if Password=="":
+        input_err("Password")
+        flag=1
+
+    if flag==0:
+        field=[name,email,Password]
+        return field
+
+
+def check_user_list(field,reader):
+    for line in reader:
+        if field==line:
+            popmsg()
+            switch_login()
+            return True
+        
+
 def new_user():
     with open(filename,'r+',newline="") as file:
-        name=entry_1.get()
-        if name=="":
-            input_err("Name")
-        email=entry_2.get()
-        if email=="":
-            input_err("Email")
-        Password=entry_3.get()
-        if Password=="":
-            input_err("Password")
-        field=[name,email,Password]
-
-        readar=csv.reader(file)
-        flag=0
-        for line in readar:
-            if field==line:
-                print(line)
-                popmsg()
-                flag=1
-                break
-        if flag==0:
+        field=get_data()
+        reader=csv.reader(file)
+        if not check_user_list(field,reader):
             csv.writer(file).writerow(field)
             messagebox.showinfo("Success","New User Registration is Successful.\n"+
                                 "Now Log Into The System")
