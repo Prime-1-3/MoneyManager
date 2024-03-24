@@ -5,9 +5,31 @@ from datetime import date
 import csv
 
 
+
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\income")
 filename=OUTPUT_PATH/Path("data.csv")
+
+def show_submit_lebel():
+    warning_label.place(x=515.0, y=350.0)
+    warning_label.config(text="Successfully Submitted!!",fg="white")
+    window.after(900,lambda:warning_label.place_forget())
+
+def show_no_source_lebel():
+    warning_label.place(x=515.0, y=350.0)
+    warning_label.config(text="Please Enter Income Source",fg="red")
+
+def show_no_amount_lebel():
+    warning_label.place(x=515.0, y=350.0)
+    warning_label.config(text="Please Enter Income Amount",fg="red")
+
+def show_no_data_lebel():
+    warning_label.place(x=515.0, y=350.0)
+    warning_label.config(text="Please provide both Income Source and Income Amount.", fg="red", font=("Poppins", 10))
+
+def show_input_error():
+    warning_label.place(x=515.0, y=350.0)
+    warning_label.config(text="Income Amount Can Be Only Numbers",fg="red")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,7 +43,7 @@ def execute_python_file(file_path):
       print(f"Error: The file '{file_path}' does not exist.")
 
 
-def switch_dash():
+def switch_dashboard():
     window.destroy()
     execute_python_file(OUTPUT_PATH/Path("dashboard.py"))
 
@@ -37,42 +59,34 @@ def switch_summery():
     window.destroy()
     execute_python_file(OUTPUT_PATH/Path("summery.py"))
 
-
-
-def submit_button_press():
+def data_write(field):
     with open(filename,'a',newline="") as file:
-    
-        income_source = entry_1.get().strip()
-        income_amount = entry_2.get().strip()
+        csv.writer(file).writerow(field)
+        entry_1.delete(0,'end')
+        entry_2.delete(0,'end')
+        file.close()
+    show_submit_lebel()
+
+
+def submit_button_press():   
+    income_source = entry_1.get().strip()
+    income_amount = entry_2.get().strip()
 
     
-        if income_source and income_amount.isnumeric():
-            field=[1,date.today().strftime("%b %d %Y"),income_source, income_amount]
-            csv.writer(file).writerow(field)
-            entry_1.delete(0,'end')
-            entry_2.delete(0,'end')
-            file.close()
+    if income_source and income_amount.isnumeric():
+        data_write(field=[1,date.today().strftime("%b %d %Y"),income_source, income_amount])
+           
+    elif income_amount and not income_source:
+        show_no_source_lebel()
 
-            warning_label.place(x=515.0, y=350.0)
-            warning_label.config(text="Successfully Submitted!!",fg="white")
-            window.after(900,lambda:warning_label.place_forget())
+    elif not income_amount and income_source:
+        show_no_amount_lebel()
 
-        elif income_amount and not income_source:
-            warning_label.place(x=515.0, y=350.0)
-            warning_label.config(text="Please Enter Income Source",fg="red")
+    elif not income_source and not income_amount:
+        show_no_data_lebel()
 
-        elif not income_amount and income_source:
-            warning_label.place(x=515.0, y=350.0)
-            warning_label.config(text="Please Enter Income Amount",fg="red")
-
-        elif not income_source and not income_amount:
-            warning_label.place(x=515.0, y=350.0)
-            warning_label.config(text="Please provide both Income Source and Income Amount.", fg="red", font=("Poppins", 10))
-
-        elif not income_amount.isnumeric():
-            warning_label.place(x=515.0, y=350.0)
-            warning_label.config(text="Income Amount Must Be Numbers",fg="red")
-
+    elif not income_amount.isnumeric():
+        show_input_error()
 
 window = Tk()
 window.iconbitmap(relative_to_assets("window_logo.ico"))
@@ -107,7 +121,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=switch_dash,
+    command=switch_dashboard,
     relief="flat"
 )
 button_1.place(
