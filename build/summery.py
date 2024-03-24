@@ -77,18 +77,11 @@ def extract_date(row):
     except ValueError:
         return datetime.strptime(date_string,'%b %d %Y')
 
-with open(filename,"r",newline="") as file:
-    reader = csv.reader(file)
-    data=list(reader)
-    header=data[0]
-    d_sorted=sorted(data[1:],key=extract_date)
-    d_sorted.insert(0,header)
-    d_count=len(data)
-    
 
-    window.grid_columnconfigure(0,weight=1)    
-    
-    if d_count<=10:
+window.grid_columnconfigure(0,weight=1)    
+
+
+def show_summery_small(d_sorted):
         for i, row in enumerate(d_sorted, start=1):
             for col in range(1, 4):
                 if row[0]=='1':
@@ -100,8 +93,9 @@ with open(filename,"r",newline="") as file:
                 else:
                     lebel= tkinter.Label(window, text=row[col],font='oregano',height=2,width=12,relief=tkinter.RIDGE,bg='#FF4545')
                     lebel.grid(row=i, column=col,ipadx='72')
-                
-    else:
+
+
+def show_summery_large(d_sorted):
         for i, row in enumerate(d_sorted, start=1):
             for col in range(1, 4):
                 if row[0]=='1':
@@ -115,7 +109,27 @@ with open(filename,"r",newline="") as file:
                     lebel.grid(row=i, column=col,ipadx='72')
 
 
+                
 
+def get_data():
+    with open(filename,"r",newline="") as file:
+        reader = csv.reader(file)
+        data=list(reader)
+        header=data[0]
+        d_sorted=sorted(data[1:],key=extract_date)
+        d_sorted.insert(0,header)
+        d_count=len(data)
+    
+    if d_count<=10:
+        show_summery_small(d_sorted)
+
+    else:
+        show_summery_large(d_sorted)
+
+
+
+
+get_data()
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
