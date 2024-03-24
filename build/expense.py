@@ -23,7 +23,30 @@ def switch_login():
     window.destroy()
     execute_python_file(OUTPUT_PATH/Path("login.py"))
 
-def switch_dash():
+
+def show_submit_lebel():
+    warning_label.place(x=515.0, y=430.0)
+    warning_label.config(text="Successfully Submitted!!",fg="white")
+    window.after(900,lambda:warning_label.place_forget())
+
+def show_no_source_lebel():
+    warning_label.place(x=515.0, y=430.0)
+    warning_label.config(text="Please Enter Expense Source",fg="red")
+
+def show_no_amount_lebel():
+    warning_label.place(x=515.0, y=430.0)
+    warning_label.config(text="Please Enter Expense Amount",fg="red")
+
+def show_no_data_lebel():
+    warning_label.place(x=515.0, y=430.0)
+    warning_label.config(text="Please provide both Expense Reason and Expense Amount.", fg="red", font=("Poppins", 10))
+
+def show_input_error():
+    warning_label.place(x=515.0, y=430.0)
+    warning_label.config(text="Expense Amount Can Be Only Numbers",fg="red")
+
+
+def switch_dashboard():
     window.destroy()
     execute_python_file(OUTPUT_PATH/Path("dashboard.py"))
 
@@ -35,41 +58,32 @@ def switch_summery():
     window.destroy()
     execute_python_file(OUTPUT_PATH/Path("summery.py"))
 
+def data_write(field):
+    with open(filename,'a',newline="") as file:
+        csv.writer(file).writerow(field)
+        entry_1.delete(0,'end')
+        entry_2.delete(0,'end')
+        file.close()
+    show_submit_lebel()
 
 def submit_button_press():
-    with open(filename,'a',newline="") as file:
-    
-        expense_source = entry_1.get().strip()
-        expense_amount = entry_2.get().strip()
+    expense_source = entry_1.get().strip()
+    expense_amount = entry_2.get().strip()
 
-    
-        if expense_source and expense_amount.isnumeric():
-            field=[0,cal.get_date().strftime("%b %d %Y"),expense_source, expense_amount]
-            csv.writer(file).writerow(field)
-            entry_1.delete(0,'end')
-            entry_2.delete(0,'end')
-            file.close()
+    if expense_source and expense_amount.isnumeric():
+        data_write(field=[0,cal.get_date().strftime("%b %d %Y"),expense_source, expense_amount])
 
-            warning_label.place(x=515.0, y=430.0)
-            warning_label.config(text="Successfully Submitted!!",fg="white")
-            window.after(900,lambda:warning_label.place_forget())
+    elif expense_amount and not expense_source:
+        show_no_source_lebel()
 
-        elif expense_amount and not expense_source:
-            warning_label.place(x=515.0, y=430.0)
-            warning_label.config(text="Please Enter Expense Source",fg="red")
+    elif not expense_amount and expense_source:
+        show_no_amount_lebel()
+            
+    elif not expense_source and not expense_amount:
+        show_no_data_lebel()
 
-        elif not expense_amount and expense_source:
-            warning_label.place(x=515.0, y=430.0)
-            warning_label.config(text="Please Enter Expense Amount",fg="red")
-
-        elif not expense_source and not expense_amount:
-            warning_label.place(x=515.0, y=430.0)
-            warning_label.config(text="Please provide both Expense Source and Expense Amount.", fg="red", font=("Poppins", 10))
-
-        elif not expense_amount.isnumeric():
-            warning_label.place(x=515.0, y=430.0)
-            warning_label.config(text="Expense Amount Can Be Only Numbers",fg="red")
-
+    elif not expense_amount.isnumeric():
+        show_input_error()
 
 
 window = Tk()
@@ -105,7 +119,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=switch_dash,
+    command=switch_dashboard,
     relief="flat"
 )
 button_1.place(
