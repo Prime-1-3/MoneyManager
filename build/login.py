@@ -39,23 +39,13 @@ def input_err(field):
     messagebox.showerror("No Input",field)
     
 
-
-
-def check_user():
+def check_user(email,password):
     with open(filename,'r') as file:
-        email=entry_1.get()
-        if email=="":
-            input_err("Email")
-        Password=entry_2.get()
-        if Password=="":
-            input_err("Password")
-        
-
         readar=csv.reader(file)
         next(readar)                                                #Skip the field names
         flag=0
         for line in readar:
-            if email==line[1] and Password==line[2]:
+            if email==line[1] and password==line[2]:
                 popmsg(line[0])
                 flag=1
                 break
@@ -63,6 +53,16 @@ def check_user():
             pop_reg_msg()
         file.close()
 
+
+def get_data():
+    email=entry_1.get()
+    if email=="":
+        input_err("Email")
+    password=entry_2.get()
+    if password=="":
+        input_err("Password")
+    
+    check_user(email,password)
 
 
 
@@ -191,7 +191,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=check_user,
+    command=get_data,
     relief="flat"
 )
 button_1.place(
