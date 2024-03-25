@@ -25,7 +25,7 @@ class GUI(LoginManager):
         self.canvas.create_image(772.0,290.0,image=self.image_image_2)
         self.canvas.create_text(614.0,103.0,anchor="nw",text="Enter Your Email and Password",fill="#000000",font=("Arial", 20 * -1))
         self.entry_image_1 = PhotoImage(file=self.relative_to_assets("entry_1.png"))
-        entry_bg_1 = self.canvas.create_image(772.92,220.88,image=self.entry_image_1)
+        self.canvas.create_image(772.92,220.88,image=self.entry_image_1)
         self.entry_1 = Entry(bd=0,bg="#DAF3C6",fg="#000716",highlightthickness=0)
         self.entry_1.place(x=622.72,y=197.34,width=300.39,height=45.08)
         self.entry_image_2 = PhotoImage(file=self.relative_to_assets("entry_2.png"))
