@@ -45,7 +45,7 @@ class GUI(LoginManager):
         button_1 = Button(image=self.button_image_1,borderwidth=0,highlightthickness=0,command=self.get_data)
         button_1.place(x=614.72,y=321.77,width=316.39,height=47.08)
         self.canvas.create_text(613.0,33.0,anchor="nw",text="LET'S GET YOU STARTED",fill="#000000",font=("Arial", 12 * -1))
-        self.canvas.create_text(633.0,415.0,anchor="nw",text="Don’t have an account?",fill="#212121",font=("Arial", 24 * -1))
+        self.canvas.create_text(633.0,415.0,anchor="nw",text="Already have an account?",fill="#212121",font=("Arial", 24 * -1))
         self.button_image_2 = PhotoImage(file=self.relative_to_assets("button_2.png"))
         button_2 = Button(image=self.button_image_2,borderwidth=0,highlightthickness=0,command=self.switch_login)
         button_2.place(x=660.0,y=457.0,width=220.0,height=44.0)
