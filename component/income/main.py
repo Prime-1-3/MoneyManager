@@ -8,7 +8,7 @@ OUTPUT_PATH = Path(__file__).parent.parent.parent
 filename = OUTPUT_PATH / Path("data_store/data.csv")
 
 
-class ExpenseManager:
+class IncomeManager:
     def __init__(self):
         self.window = Tk()
         self.window.iconbitmap(ExpenseManagerGUI.relative_to_assets("window_logo.ico"))
@@ -27,5 +27,5 @@ class ExpenseManager:
 
 
 if __name__ == "__main__":
-    app = ExpenseManager()
+    app = IncomeManager()
     app.run()

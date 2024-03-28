@@ -26,13 +26,13 @@ class NavigationHandler:
         self.window.destroy()
         self.execute_python_file(self.OUTPUT_PATH / Path("dashboard.py"))
 
-    def switch_income(self):
+    def switch_expense(self):
         self.window.destroy()
-        self.execute_python_file(self.OUTPUT_PATH / Path("income/main.py"))
+        self.execute_python_file(self.OUTPUT_PATH / Path("expense/main.py"))
 
     def switch_summary(self):
         self.window.destroy()
         self.execute_python_file(self.OUTPUT_PATH / Path("summary.py"))
 
-    def submit_data(self,expense_date,expense_sorce,expense_amount):
-        self.feed.submit_data(expense_date,expense_sorce,expense_amount)
+    def submit_data(self, expense_source, expense_amount):
+        self.feed.submit_data(expense_source,expense_amount)

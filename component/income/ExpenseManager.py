@@ -5,6 +5,7 @@ from GUI import ExpenseManagerGUI
 from FeedBack import Feedback
 
 OUTPUT_PATH = Path(__file__).parent.parent.parent
+# ASSETS_PATH = OUTPUT_PATH / Path(r"assets\expense")
 filename = OUTPUT_PATH / Path("data_store/data.csv")
 
 

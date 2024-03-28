@@ -19,11 +19,11 @@ class Feedback:
 
     def show_no_source_label(self):
         self.warning_label.place(x=515.0, y=430.0)
-        self.warning_label.config(text="Please Enter Expense Reason", fg="red")
+        self.warning_label.config(text="Please Enter Income Source", fg="red")
 
     def show_no_amount_label(self):
         self.warning_label.place(x=515.0, y=430.0)
-        self.warning_label.config(text="Please Enter Expense Amount", fg="red")
+        self.warning_label.config(text="Please Enter Income Amount", fg="red")
 
     def show_no_data_label(self):
         self.warning_label.place(x=515.0, y=430.0)
@@ -32,12 +32,12 @@ class Feedback:
 
     def show_input_error_label(self):
         self.warning_label.place(x=515.0, y=430.0)
-        self.warning_label.config(text="Expense Amount Can Be Only Numbers", fg="red")
+        self.warning_label.config(text="Income Amount Can Be Only Numbers", fg="red")
 
-    def submit_data(self, e_date, expense_source, expense_amount):
+    def submit_data(self, expense_source, expense_amount):
         if expense_source and expense_amount.isnumeric():
             data = DataHandler(self.filename)
-            data.data_write([0, e_date, expense_source, expense_amount])
+            data.data_write([1, expense_source, expense_amount])
             self.show_submit_label()
 
         elif expense_amount and not expense_source:
