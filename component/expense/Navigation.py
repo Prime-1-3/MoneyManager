@@ -32,7 +32,7 @@ class NavigationHandler:
 
     def switch_summary(self):
         self.window.destroy()
-        self.execute_python_file(self.OUTPUT_PATH / Path("summary.py"))
+        self.execute_python_file(self.OUTPUT_PATH / Path("summary/main.py"))
 
     def submit_data(self,expense_date,expense_sorce,expense_amount):
         self.feed.submit_data(expense_date,expense_sorce,expense_amount)

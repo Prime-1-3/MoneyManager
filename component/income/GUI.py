@@ -1,11 +1,12 @@
 from tkinter import Canvas, PhotoImage, Button, Entry
 from tkcalendar import DateEntry
 from pathlib import Path
+from datetime import date
 from Navigation import NavigationHandler
 
 ASSETS_PATH = Path(__file__).parent.parent.parent / "assets" / "income"
 
-class ExpenseManagerGUI:
+class IncomeManagerGUI:
     def __init__(self, window):
         self.window = window
         self.canvas = Canvas(window, bg="#28283F", height=582, width=1116, bd=0, highlightthickness=0)
@@ -46,7 +47,7 @@ class ExpenseManagerGUI:
         self.canvas.create_text(600, 226, text="Enter Income Amount", fill="#FEFAD9", font=("Arial", 12))
         def submit_data():
             source, amount=self.entry_1.get().strip(), self.entry_2.get().strip()
-            self.nav.submit_data(source, amount)
+            self.nav.submit_data(date.today().strftime("%b %d %Y"),source, amount)
             if amount.isnumeric() and not source == "":
                 self.entry_1.delete(0, "end")
                 self.entry_2.delete(0, 'end')

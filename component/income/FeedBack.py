@@ -7,8 +7,8 @@ class Feedback:
     def __init__(self, window):
         self.OUTPUT_PATH = Path(__file__).parent.parent.parent
         self.filename = self.OUTPUT_PATH / "data_store/data.csv"
-        self.expense_source = None
-        self.expense_amount = None
+        self.income_source = None
+        self.income_amount = None
         self.window = window
         self.warning_label = Label(window, bg="#28283F", fg="red", font=("Poppins", 12))
 
@@ -34,20 +34,20 @@ class Feedback:
         self.warning_label.place(x=515.0, y=430.0)
         self.warning_label.config(text="Income Amount Can Be Only Numbers", fg="red")
 
-    def submit_data(self, expense_source, expense_amount):
-        if expense_source and expense_amount.isnumeric():
+    def submit_data(self, date,income_source, income_amount):
+        if income_source and income_amount.isnumeric():
             data = DataHandler(self.filename)
-            data.data_write([1, expense_source, expense_amount])
+            data.data_write([1, date, income_source, income_amount])
             self.show_submit_label()
 
-        elif expense_amount and not expense_source:
+        elif income_amount and not income_source:
             self.show_no_source_label()
 
-        elif not expense_amount and expense_source:
+        elif not income_amount and income_source:
             self.show_no_amount_label()
 
-        elif not expense_source and not expense_amount:
+        elif not income_source and not income_amount:
             self.show_no_data_label()
 
-        elif not expense_amount.isnumeric():
+        elif not income_amount.isnumeric():
             self.show_input_error_label()
