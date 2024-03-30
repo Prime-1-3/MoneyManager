@@ -24,7 +24,7 @@ class NavigationHandler:
 
     def switch_dashboard(self):
         self.window.destroy()
-        self.execute_python_file(self.OUTPUT_PATH / Path("dashboard.py"))
+        self.execute_python_file(self.OUTPUT_PATH / Path("dashboard/main.py"))
 
     def switch_expense(self):
         self.window.destroy()

@@ -32,7 +32,7 @@ class Feedback:
 
     def show_input_error_label(self):
         self.warning_label.place(x=515.0, y=430.0)
-        self.warning_label.config(text="Income Amount Can Be Only Numbers", fg="red")
+        self.warning_label.config(text="Income Amount Can Be Only Positive Numbers", fg="red")
 
     def submit_data(self, date,income_source, income_amount):
         if income_source and income_amount.isnumeric():
