@@ -25,7 +25,7 @@ class UserManager:
     def popmsg(self, name):
         messagebox.showinfo("Greetings", f"{name} Welcome Back")
         self.window.destroy()
-        self.execute_python_file(self.OUTPUT_PATH / "component/expense/main.py")
+        self.execute_python_file(self.OUTPUT_PATH / "component/dashboard/main.py")
 
     def pop_reg_msg(self):
         messagebox.showinfo("Incorrect Mail or Password",

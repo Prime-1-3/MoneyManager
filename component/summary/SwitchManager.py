@@ -6,7 +6,7 @@ class SwitchManager:
 
     def dashboard(self,window):
         window.destroy()
-        self.execute_python_file("dashboard.py")
+        self.execute_python_file("dashboard/main.py")
 
     def login(self,window):
         window.destroy()

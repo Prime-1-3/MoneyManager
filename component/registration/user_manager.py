@@ -28,10 +28,10 @@ class UserManager:
         self.execute_python_file(self.OUTPUT_PATH / "component/login/main.py")
 
     def pop_reg_msg(self):
-        messagebox.showinfo("Incorrect Mail or Password",
-                            "Wrong Email or Password \n" +
+        messagebox.showinfo("Existing Email",
+                            "Email Already Exist \n" +
                             "please enter Your Email and Password correctly\n\n" +
-                            "If you don't have an accont, please register")
+                            "If Already have an accont, please Login")
 
     def input_err(self, field):
         field = f"{field} has no value"

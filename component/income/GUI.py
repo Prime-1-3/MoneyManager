@@ -1,5 +1,5 @@
 from tkinter import Canvas, PhotoImage, Button, Entry
-from tkcalendar import DateEntry
+#from tkcalendar import DateEntry
 from pathlib import Path
 from datetime import date
 from Navigation import NavigationHandler
