@@ -20,9 +20,5 @@ class DataManager:
         try:
             return datetime.strptime(date_string, "%b %d %Y")
         except ValueError:
-            try:
-                # If the date format doesn't match, try another format
                 return datetime.strptime(date_string, "%b %d %y")
-            except ValueError:
-                # If both formats fail, return a default date
-                return datetime.now()
+          

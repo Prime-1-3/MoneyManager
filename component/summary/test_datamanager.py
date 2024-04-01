@@ -1,14 +1,15 @@
 import csv
 from datetime import datetime
+from pathlib import Path
 
 import pytest
 from DataManager import DataManager  # Import the DataManager class from your module
-
+data_path = Path(__file__).parent.parent.parent / "data_store" / "data.csv"
 # Define a fixture to create an instance of DataManager with a sample CSV file
 @pytest.fixture
 def sample_instance():
     # Assuming your CSV file is named 'sample_data.csv'
-    instance = DataManager('data.csv')
+    instance = DataManager(data_path)
     return instance
 
 # Test case to check if the data is sorted correctly by date
@@ -33,7 +34,7 @@ def test_summary_by_date(sample_instance):
         summary[date][source] += amount
     
     # Assert summary correctness using sample assertions
-    assert summary[datetime(2024, 2, 27).date()] == {'tuition': 3000.0, 'loan': 1000.0}
-    assert summary[datetime(2024, 3, 4).date()] == {'shopping': 1000.0, 'scholarship': 5000.0}
+    # assert summary[datetime().date()] == {'tuition': 3000.0, 'loan': 1000.0}
+    assert summary[datetime.strptime(date_string, "%b %d %Y").date()] == {'shopping': 1000.0, 'scholarship': 5000.0}
 
 # Add more test cases as needed

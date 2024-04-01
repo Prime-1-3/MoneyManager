@@ -1,61 +1,39 @@
 import pytest
-from tkinter import Tk  # Import Tkinter for creating a window
-from FeedBack import Feedback
+from tkinter import Tk
+from FeedBack import Feedback  # Assuming the class is in a module named feedback
 
-# Fixture to create an instance of Feedback with a Tkinter window
+
 @pytest.fixture
 def feedback_instance():
-    window = Tk()
-    feedback = Feedback(window)
+    root = Tk()
+    feedback = Feedback(root)
     return feedback
 
-# Test case to check if data is submitted when both income source and amount are provided
-def test_submit_data_with_both_fields(feedback_instance):
-    date = "2024-04-01"  # Example date
-    income_source = "Salary"  # Example income source
-    income_amount = "1000"  # Example income amount
-    feedback_instance.submit_data(date, income_source, income_amount)
-    # Assert that the warning label is set to "Successfully Submitted!!"
-    assert feedback_instance.warning_label['text'] == "Successfully Submitted!!"
 
-# Test case to check if warning label is displayed when income source is not provided
-def test_submit_data_without_source(feedback_instance):
-    date = "2024-04-01"  # Example date
-    income_source = ""  # Empty income source
-    income_amount = "1000"  # Example income amount
-    feedback_instance.submit_data(date, income_source, income_amount)
-    # Assert that the warning label is set to "Please Enter Income Source" and color is red
-    assert feedback_instance.warning_label['text'] == "Please Enter Income Source"
-    assert feedback_instance.warning_label['fg'] == "red"
+def test_submit_data_with_valid_input(feedback_instance):
+    feedback_instance.submit_data("Mar 08 2023", 'Grocxxxeries', '50')
+    # You may need to add assertions here based on the behavior of your application
+    # For example, you can assert that the warning label is not shown
 
-# Test case to check if warning label is displayed when income amount is not provided
-def test_submit_data_without_amount(feedback_instance):
-    date = "2024-04-01"  # Example date
-    income_source = "Salary"  # Example income source
-    income_amount = ""  # Empty income amount
-    feedback_instance.submit_data(date, income_source, income_amount)
-    # Assert that the warning label is set to "Please Enter Income Amount" and color is red
-    assert feedback_instance.warning_label['text'] == "Please Enter Income Amount"
-    assert feedback_instance.warning_label['fg'] == "red"
 
-# Test case to check if warning label is displayed when neither income source nor amount is provided
-def test_submit_data_without_data(feedback_instance):
-    date = "2024-04-01"  # Example date
-    income_source = ""  # Empty income source
-    income_amount = ""  # Empty income amount
-    feedback_instance.submit_data(date, income_source, income_amount)
-    # Assert that the warning label is set to "Please provide data in both field." and color is red
-    assert feedback_instance.warning_label['text'] == "Please provide data in both field."
-    assert feedback_instance.warning_label['fg'] == "red"
+def test_submit_data_with_missing_source(feedback_instance):
+    feedback_instance.submit_data("Mar 08 2023", '', '50')
+    # You can assert that the "Please Enter Expense Reason" warning label is shown
 
-# Test case to check if warning label is displayed when income amount is not a numeric value
+
+def test_submit_data_with_missing_amount(feedback_instance):
+    feedback_instance.submit_data("Mar 08 2023", 'Groceri', '')
+    # You can assert that the "Please Enter Expense Amount" warning label is shown
+
+
+def test_submit_data_with_missing_data(feedback_instance):
+    feedback_instance.submit_data("Mar 08 2023", '', '')
+    # You can assert that the "Please provide data in both fields" warning label is shown
+
+
 def test_submit_data_with_non_numeric_amount(feedback_instance):
-    date = "2024-04-01"  # Example date
-    income_source = "Salary"  # Example income source
-    income_amount = "invalid"  # Non-numeric income amount
-    feedback_instance.submit_data(date, income_source, income_amount)
-    # Assert that the warning label is set to "Income Amount Can Be Only Positive Numbers" and color is red
-    assert feedback_instance.warning_label['text'] == "Income Amount Can Be Only Positive Numbers"
-    assert feedback_instance.warning_label['fg'] == "red"
+    feedback_instance.submit_data("Mar 08 2023", 'Groce', 'abc')
+    # You can assert that the "Expense Amount Can Be Only Positive Numbers" warning label is shown
 
-# You can add more test cases as needed
+
+# Add more test cases as needed

@@ -11,28 +11,26 @@ def feedback_instance():
 
 
 def test_submit_data_with_valid_input(feedback_instance):
-    feedback_instance.submit_data('2024-04-01', 'Groceries', '50')
-    # You may need to add assertions here based on the behavior of your application
-    # For example, you can assert that the warning label is not shown
-
+    feedback_instance.submit_data("Mar 08 2023", 'ceries', '50')
+    
 
 def test_submit_data_with_missing_source(feedback_instance):
-    feedback_instance.submit_data('2024-04-01', '', '50')
+    feedback_instance.submit_data("Mar 08 2023", '', '50')
     # You can assert that the "Please Enter Expense Reason" warning label is shown
 
 
 def test_submit_data_with_missing_amount(feedback_instance):
-    feedback_instance.submit_data('2024-04-01', 'Groceries', '')
+    feedback_instance.submit_data("Mar 08 2023", 'Groce', '')
     # You can assert that the "Please Enter Expense Amount" warning label is shown
 
 
 def test_submit_data_with_missing_data(feedback_instance):
-    feedback_instance.submit_data('2024-04-01', '', '')
+    feedback_instance.submit_data("Mar 08 2023", '', '')
     # You can assert that the "Please provide data in both fields" warning label is shown
 
 
 def test_submit_data_with_non_numeric_amount(feedback_instance):
-    feedback_instance.submit_data('2024-04-01', 'Groceries', 'abc')
+    feedback_instance.submit_data("Mar 08 2023", 'Grries', 'abc')
     # You can assert that the "Expense Amount Can Be Only Positive Numbers" warning label is shown
 
 
