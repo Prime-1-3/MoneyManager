@@ -51,3 +51,6 @@ class Feedback:
 
         elif not expense_amount.isnumeric():
             self.show_input_error_label()
+
+    def some_assertion(self):
+         return "successful"
