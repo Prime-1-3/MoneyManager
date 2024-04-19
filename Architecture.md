@@ -26,6 +26,6 @@ Overall, a repository architecture serves as a foundational component of a money
 10. Show Total income
 
 
-<img title="Diagram of Repository Architecture Pattern for Money Manager" alt="Architectural Pattern for Money Manager" src="build/assets/Repository Architecture Diagram.jpeg">
+<img title="Diagram of Repository Architecture Pattern for Money Manager" alt="Architectural Pattern for Money Manager" src="assets/Repository Architecture Diagram.jpeg">
 
 ## Figure: Repository Architecture Pattern for Money Manager
