@@ -2,7 +2,7 @@ from tkinter import Tk
 from pathlib import Path
 from Navigation import NavigationHandler
 from GUI import IncomeManagerGUI
-from FeedBack import Feedback
+from Feedback import Feedback
 
 OUTPUT_PATH = Path(__file__).parent.parent.parent
 filename = OUTPUT_PATH / Path("data_store/data.csv")
