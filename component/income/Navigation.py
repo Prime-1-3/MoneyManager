@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from FeedBack import Feedback
+from Feedback import Feedback
 
 
 class NavigationHandler:

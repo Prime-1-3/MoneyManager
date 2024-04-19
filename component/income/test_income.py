@@ -1,6 +1,6 @@
 import pytest
 from tkinter import Tk
-from FeedBack import Feedback
+from Feedback import Feedback
 
 
 @pytest.fixture
@@ -10,17 +10,13 @@ def feedback_instance():
     return feedback
 
 
-import pytest
-from tkinter import Tk 
-from FeedBack import Feedback 
-
 @pytest.fixture
 def mock_feedback_window():
     return Tk()
 
 def test_submit_data_valid(mock_feedback_window):
     feedback = Feedback(mock_feedback_window)
-    feedback.submit_data("Mar 08 2023", "Salary", "5000")
+    feedback.submit_data("Mar 08 2024", "test income", "500")
     assert feedback.warning_label.cget("text") == "Successfully Submitted!!"
 
 def test_submit_data_no_source(mock_feedback_window):

@@ -34,7 +34,7 @@ class ShowInfo:
         most_income_amount_text_label = Label(self.frame3, text=most_income_amount_text, font=("Arial", 19, "bold"),
                                               fg='#0F1035', bg='#BFEA7C')
         most_income_label_text_label.place(x=20, y=20)
-        most_income_source_text_label.place(x=69, y=55)
+        most_income_source_text_label.place(x=35, y=55)
         most_income_amount_text_label.place(x=20, y=100)
         most_expense_source = max(expenses_data, key=expenses_data.get)
         most_expense_amount = expenses_data[most_expense_source]

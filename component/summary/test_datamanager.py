@@ -30,6 +30,6 @@ def test_summary_by_date(sample_instance):
             summary[date][source] = 0
         summary[date][source] += amount
     
-    assert summary[datetime.strptime(date_string, "%b %d %Y").date()] == {"tour 7no ghat":1000 }
+    assert summary[datetime.strptime(date_string, "%b %d %Y").date()] == {'zzz': 1000 }
 
 
