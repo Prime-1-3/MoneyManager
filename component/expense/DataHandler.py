@@ -9,4 +9,3 @@ class DataHandler:
         with open(self.filename, 'a', newline="") as file:
             csv.writer(file).writerow(field)
             file.close()
-

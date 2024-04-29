@@ -4,3 +4,6 @@ component/income/__pycache__
 component/Dashboard/__pycache__/body.cpython-311.pyc
 component/Dashboard/__pycache__/header.cpython-311.pyc
 component/Dashboard/__pycache__/show_info.cpython-311.pyc
+component/expense/__pycache__/DataHandler.cpython-311.pyc
+component/expense/__pycache__/FeedBack.cpython-311.pyc
+component/expense/__pycache__/GUI.cpython-311.pyc

@@ -35,9 +35,10 @@ class Feedback:
         self.warning_label.config(text="Expense Amount Can Be Only Positive Numbers", fg="red")
 
     def submit_data(self, e_date, expense_source, expense_amount):
+        expense_flag=0
         if expense_source and expense_amount.isnumeric():
             data = DataHandler(self.filename)
-            data.data_write([0, e_date, expense_source, expense_amount])
+            data.data_write([expense_flag, e_date, expense_source, expense_amount])
             self.show_submit_label()
 
         elif expense_amount and not expense_source:
