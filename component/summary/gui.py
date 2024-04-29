@@ -49,9 +49,9 @@ class MainWindow:
         self.image_2 = self.canvas.create_image(1060.0, 550.0, image=self.image_image_2)
         self.window.resizable(False, False)
     def get_data(self):
-        d_count = len(self.data_manager.get_data())
+        d_count,start,end = len(self.data_manager.get_data()), 1, 4
         for i, row in enumerate(self.data_manager.get_data(), start=1):
-            for col in range(1, 4):
+            for col in range(start, end):
                 BG = '#0FFF52' if row[0] == '1' else '#E2B2FF' if row[0] == 'flag' else '#FF4545'
                 if d_count <= 10:
                     label = Label(self.window, text=row[col], font='Arial', height=2, width=12, relief='ridge', bg=BG)
