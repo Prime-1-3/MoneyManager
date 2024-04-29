@@ -3,6 +3,7 @@ from header import Header
 from body import Body
 from show_info import ShowInfo
 
+
 class Main:
     def __init__(self):
         window = Tk()

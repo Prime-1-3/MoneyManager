@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 
+
 class Navigation:
     def __init__(self,window):
         self.window=window

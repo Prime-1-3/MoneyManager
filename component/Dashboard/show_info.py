@@ -1,7 +1,6 @@
 from file_handling import FileHandling
 from tkinter import *
 
-
 class ShowInfo:
     def __init__(self, window):
         self.data = FileHandling()

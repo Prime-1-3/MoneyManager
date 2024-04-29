@@ -11,23 +11,17 @@ class Body:
         self.file_handler = FileHandling()
         self.window = window
         self.nav=Navigation(self.window)
-
-        self.canvas = Canvas(self.window, bg='#28283F', width=1116, height=582, bd=0, highlightthickness=0,
-                             relief="ridge")
+        self.canvas = Canvas(self.window, bg='#28283F', width=1116, height=582, bd=0, highlightthickness=0)
         self.canvas.place(x=0, y=0)
         self.image_image_1 = PhotoImage(file=assets_path / "image_1.png")
-        self.canvas.create_image(134.0, 291.0, image=self.image_image_1)
+        self.canvas.create_image(134.0, 291.0, image=self.image_image_1,)
         self.frame1 = Frame(window, bg='#7CCEC9')
         self.frame1.place(x=300, y=70, width=840, height=350)
         self.canvas = Canvas(self.frame1, bg='#7CCEC9', width=800, height=350, bd=0, highlightthickness=0)
         self.canvas.pack()
         self.draw_pie_charts()
-
-
-
         self.button_image_1 = PhotoImage(file=assets_path / "button_1.png")
-        self.button_1 = Button(image=self.button_image_1, borderwidth=0, highlightthickness=0,
-                               command=lambda: print("button_1 clicked"))
+        self.button_1 = Button(image=self.button_image_1, borderwidth=0, highlightthickness=0)
         self.button_1.place(x=51.0, y=72.0, width=193.0, height=32.0)
         self.button_image_2 = PhotoImage(file=assets_path / "button_2.png")
         self.button_2 = Button(image=self.button_image_2, borderwidth=0, highlightthickness=0,
@@ -45,38 +39,25 @@ class Body:
         self.button_5 = Button(image=self.button_image_5, borderwidth=0, highlightthickness=0,
                                command=lambda: self.nav.switch_login(path), relief="flat")
         self.button_5.place(x=87.0, y=440.0, width=136.0, height=64.0)
-        self.navigation = Navigation(window)
-
     def draw_pie_charts(self):
         income_data, expenses_data = self.file_handler.calculate_income_expenses()
-
-        # Define colors for the pie chart slices
-        income_colors = ['#FF9999', '#66B2FF', '#99FF99', '#FFCC99', '#FFD700']
-        expenses_colors = ['#FFCC99', '#FFD700', '#FF9999', '#99FF99', '#66B2FF']
-
-        self.draw_pie_chart(self.canvas, income_data, "Income Details", 120, 175, 120, income_colors)
-        self.draw_pie_chart(self.canvas, expenses_data, "Expenses Details", 502, 175, 120, expenses_colors)
-
+        Icolors = ['#FF9999', '#66B2FF', '#99FF99', '#FFCC99', '#FFD700']
+        Ecolors = ['#FFCC99', '#FFD700', '#FF9999', '#99FF99', '#66B2FF']
+        self.draw_pie_chart(self.canvas, income_data, "Income Details", x=120, y=175, radius=120, colors=Icolors)
+        self.draw_pie_chart(self.canvas, expenses_data, "Expenses Details", x=502, y=175, radius=120, colors=Ecolors)
     def draw_pie_chart(self, canvas, data, title, x, y, radius, colors):
         total = sum(data.values())
         start_angle = 0
-
         for category, value, color in zip(data.keys(), data.values(), colors):
             angle = 360 * value / total
-            canvas.create_arc(x - radius, y - radius, x + radius, y + radius, start=start_angle, extent=angle,
-                              fill=color)
+            canvas.create_arc(x - radius, y - radius, x + radius, y + radius, start=start_angle, extent=angle, fill=color)
             start_angle += angle
 
-        radius_extend = 5
-        x_axis_extend = 20
-        x_axis_extend2 = 25
-        y_axis_extend = 10
+        radius_extend, x_axis_extend, x_axis_extend2, y_axis_extend = 5, 20, 25, 10
         legend_x, legend_y = x + radius + radius_extend, y - radius
         for category, value, color in zip(data.keys(), data.values(), colors):
             canvas.create_rectangle(legend_x, legend_y, legend_x + x_axis_extend, legend_y + x_axis_extend, fill=color)
             canvas.create_text(legend_x + x_axis_extend2, legend_y + y_axis_extend, text=f"{category} ({value})",
                                anchor='w')
             legend_y += x_axis_extend2
-
-        # Draw title
         canvas.create_text(x + 10, y - radius - 30, text=title, font=('Arial', 14, 'bold'))
